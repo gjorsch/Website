@@ -14,6 +14,8 @@ angular.module('myApp.view3', ['ngRoute'])
     data = data["@graph"];
     //dispData: data
     var dispData = [];
+    var dispDataNarrow = [];
+    //find parent node
     for (var i =0; i < data.length;i++){
       if (!data[i]["broader"] && data[i]["narrower"]){
         console.log(data[i]);
@@ -21,14 +23,30 @@ angular.module('myApp.view3', ['ngRoute'])
           for (var j =0; j < data[i]["prefLabel"].length;j++){
             //if possible use REGEX here for URI language selection
             if(data[i]["prefLabel"][j].slice(35,37)==="en"){
-              dispData.push(data[i]["prefLabel"][j]);
+              dispData.push({id:data[i]["@id"], label:data[i]["prefLabel"][j]});
             };
           };
-          //dispData.push({id: data[i]["@id"]});
-          console.log("hit!");
         };
       };
     };
+    //find next level hierachy item
+    console.log(dispData[0]["id"]);
+    for (var i=0; i <data.length;i++){
+        if (data[i]["broader"]===dispData[0]["id"]){
+          //console.log(data[i]);
+          //console.log("hit!");
+          if (data[i]["prefLabel"] != undefined){
+            for (var j =0; j < data[i]["prefLabel"].length;j++){
+              //if possible use REGEX here for URI language selection
+              if(data[i]["prefLabel"][j].slice(35,37)==="en"){
+                dispDataNarrow.push({id:data[i]["@id"], label:data[i]["prefLabel"][j]});
+                console.log(data[i]["prefLabel"][j]);
+              };
+            };
+          };
+        };
+    };
+    console.log(dispDataNarrow);
     $scope.data = dispData;
     console.log($scope.data);
   });

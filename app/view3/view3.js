@@ -36,20 +36,50 @@ angular.module('myApp.view3', ['ngRoute'])
     //define 2nd level hierachy items
     for (var i=0; i<data.length; i++){
       for (var j=0; j<dispData["parent"]["narrower"].length; j++){
-
         if (data[i]["@id"]==dispData["parent"]["narrower"][j]["id"]){
+          //add labels to narrower ids
           if (data[i]["prefLabel"] != undefined){
             for (var k =0; k<data[i]["prefLabel"].length;k++){
               if(data[i]["prefLabel"][k].slice(35,37)==="en"){
                 dispData["parent"]["narrower"][j]["label"]= data[i]["prefLabel"][k];
                 if (data[i]["narrower"] != undefined){
-                  console.log("click!");
+                  //add Array for narrower URIs "ids" to each parent
                   dispData["parent"]["narrower"][j]["narrower"]=[];
                   for (var l=0; l<data[i]["narrower"].length;l++){
-
                     dispData["parent"]["narrower"][j]["narrower"].push({id: data[i]["narrower"][l]});
-                    console.log(data[i]["narrower"][l]);
-                    console.log(dispData["parent"]["narrower"][j]["narrower"]);
+                    //console.log(data[i]["narrower"][l]);
+                    //console.log(dispData["parent"]["narrower"][j]["narrower"]);
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    //define 3rd level hierachy items
+    for (var i=0; i<data.length; i++){
+      for (var j=0; j<dispData["parent"]["narrower"].length; j++){
+        if(dispData["parent"]["narrower"][j]["narrower"] != undefined){
+          for(var k=0; k<dispData["parent"]["narrower"][j]["narrower"].length; k++){
+            if (data[i]["@id"]==dispData["parent"]["narrower"][j]["narrower"][k]["id"]){
+              //console.log(data[i]["@id"]);
+              if (data[i]["prefLabel"] != undefined){
+                for (var l =0; l<data[i]["prefLabel"].length;l++){
+                  if(data[i]["prefLabel"][l].slice(35,37)==="en"){
+                    dispData["parent"]["narrower"][j]["narrower"][k]["label"]= data[i]["prefLabel"][l];
+                    if (data[i]["narrower"] != undefined){
+                      //add Array for narrower URIs "ids" to each parent
+                      dispData["parent"]["narrower"][j]["narrower"][k]["narrower"]=[];
+                      for (var m=0; m<data[i]["narrower"].length;m++){
+                        if(data[i]["narrower"][m].length>1){
+                          dispData["parent"]["narrower"][j]["narrower"][k]["narrower"].push({id: data[i]["narrower"][m]});
+                          //console.log(data[i]["narrower"][l]);
+                          //console.log(dispData["parent"]["narrower"][j]["narrower"][k]["narrower"]);
+                          console.log(data[i]["narrower"][m]);
+                        };
+                      };
+                    };
                   };
                 };
               };
@@ -59,7 +89,8 @@ angular.module('myApp.view3', ['ngRoute'])
       };
     };
 
-    //find 3rd level hierachy items
+
+
     console.log(dispData);
     $scope.data = dispData;
     console.log($scope.data);

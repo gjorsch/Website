@@ -1,14 +1,34 @@
 <body>
-
-  <ul>
-    <li ng-repeat="ditem in data">
-      <span>{{ditem.value}}</span>
-    </li>
-  </ul>
-  <ul>
-    <li ng-repeat="link in links">
-      <span>{{link.ID}}</span>
-    </li>
-  </ul>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="subjectlist">
+          <a>{{data.parent.label}}
+          </a>
+          <ul>
+            <li ng-repeat="ditem in data.parent.narrower">
+              <ul>
+                <a>{{ditem.label}}</a>
+                <li ng-repeat="narrowitm in ditem.narrower">
+                  <ul>
+                    <a>{{narrowitm.label}}</a>
+                    <li ng-repeat="narroweritm in narrowitm.narrower">
+                      <a>{{narroweritm.id}}</a>
+                    </li>
+                  </ul>
+                </ul>
+              </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li ng-repeat="link in links">
+            <span>{{link.ID}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>

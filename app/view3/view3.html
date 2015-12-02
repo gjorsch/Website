@@ -9,17 +9,18 @@
             </h2>
             <h3>{{dispData.parent.label}}
             </h3>
+            <hr>
             <ul class="list-unstyled">
               <li ng-repeat="ditem in dispData.parent.narrower">
                 <ul class="list-unstyled">
                   <div class="frstitm">
-                  <a>{{ditem.label}}</a>
+                    <a>{{ditem.label}}</a>
                   </div>
                   <li ng-repeat="narrowitm in ditem.narrower">
                     <ul class="list-unstyled">
                       <div class="scnditm">
                         <p class="glyphicon glyphicon-triangle-right"></p>
-                      <a href="{{narrowitm.label}}">{{narrowitm.label}}</a>
+                        <a href="{{narrowitm.label}}">{{narrowitm.label}}</a>
                       </div>
                       <li ng-repeat="narroweritm in narrowitm.narrower">
                         <div class="thrditm">
@@ -46,7 +47,16 @@
             <p>
               linked keywords from GLUES database
             </p>
-            
+            <form name="myForm">
+              <label for="keywordSelect"> select keyword: </label>
+              <select name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
+                <option ng-repeat="option in links.availableOptions" value="{{option.Name}}">{{option.Name}}</option>
+              </select>
+
+            </form>
+            <hr>
+            <p>keyword = {{links.repeatSelect}}</p><br/>
+            <p>{{option.Name}}</p>
           </div>
         </div>
       </div>
@@ -56,10 +66,12 @@
             <h2>
               linked datasets
             </h2>
+            <hr>
             <ul>
-              <li> test </li>
-              <li> test </li>
-              <li> test </li>
+              <li ng-repeat="opt in links.repeatSelect.links">
+                <p>{{opt}}
+                </p>
+              </li>
             </ul>
           </div>
         </div>

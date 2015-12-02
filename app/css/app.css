@@ -35,3 +35,9 @@ padding-top: 96px;
  padding-left: 50px;
  font-size: 10px;
 }
+.navbar-fixed-bottom{
+  min-height: 16px;
+}
+boby{
+  background-color: #444;
+}

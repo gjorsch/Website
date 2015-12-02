@@ -33,7 +33,7 @@ angular.module('myApp.view3', ['ngRoute'])
       };
     };
 
-    //define 2nd level hierachy items
+    //define 2nd level hierachy nodes
     for (var i=0; i<data.length; i++){
       for (var j=0; j<dispData["parent"]["narrower"].length; j++){
         if (data[i]["@id"]==dispData["parent"]["narrower"][j]["id"]){
@@ -57,7 +57,7 @@ angular.module('myApp.view3', ['ngRoute'])
         };
       };
     };
-    //define 3rd level hierachy items
+    //define 3rd level hierachy nodes
     for (var i=0; i<data.length; i++){
       for (var j=0; j<dispData["parent"]["narrower"].length; j++){
         if(dispData["parent"]["narrower"][j]["narrower"] != undefined){
@@ -89,14 +89,16 @@ angular.module('myApp.view3', ['ngRoute'])
       };
     };
 
-
-
     console.log(dispData);
-    $scope.data = dispData;
+    $scope.dispData = dispData;
     console.log($scope.data);
   });
   $http.get("data/output_export_skos-xl_subjects.rdf.json").success(function(links){
-    $scope.links = links.data;
+    $scope.links = {
+      repeatSelect: null,
+      availableOptions: links.data
+    };
     console.log($scope.links);
+
   });
 }]);

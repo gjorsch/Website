@@ -1,33 +1,68 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div class="subjectlist">
-          <a>{{data.parent.label}}
-          </a>
-          <ul>
-            <li ng-repeat="ditem in data.parent.narrower">
-              <ul>
-                <a>{{ditem.label}}</a>
-                <li ng-repeat="narrowitm in ditem.narrower">
-                  <ul>
-                    <a>{{narrowitm.label}}</a>
-                    <li ng-repeat="narroweritm in narrowitm.narrower">
-                      <a>{{narroweritm.id}}</a>
-                    </li>
+          <div class="well">
+            <h2>
+              AggroVoc items
+            </h2>
+            <h3>{{dispData.parent.label}}
+            </h3>
+            <ul class="list-unstyled">
+              <li ng-repeat="ditem in dispData.parent.narrower">
+                <ul class="list-unstyled">
+                  <div class="frstitm">
+                  <a>{{ditem.label}}</a>
+                  </div>
+                  <li ng-repeat="narrowitm in ditem.narrower">
+                    <ul class="list-unstyled">
+                      <div class="scnditm">
+                        <p class="glyphicon glyphicon-triangle-right"></p>
+                      <a href="{{narrowitm.label}}">{{narrowitm.label}}</a>
+                      </div>
+                      <li ng-repeat="narroweritm in narrowitm.narrower">
+                        <div class="thrditm">
+                          <p class="glyphicon glyphicon-triangle-right"></p>
+                          <a href="{{narroweritm.id}}">{{narroweritm.id}}</a>
+                        </div>
+                      </li>
+
+                    </ul>
+
                   </ul>
-                </ul>
+                </li>
               </li>
-            </li>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <ul>
-          <li ng-repeat="link in links">
-            <span>{{link.ID}}</span>
-          </li>
-        </ul>
+      <div class="keywordlist">
+        <div class="col-md-5">
+          <div class="well">
+            <h2>
+              keyword list
+            </h2>
+            <p>
+              linked keywords from GLUES database
+            </p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="publist">
+        <div class="col-md-2">
+          <div class="well">
+            <h2>
+              linked datasets
+            </h2>
+            <ul>
+              <li> test </li>
+              <li> test </li>
+              <li> test </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

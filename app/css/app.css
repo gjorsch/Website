@@ -1,5 +1,37 @@
 /* app css stylesheet */
 .subjectlist{
-padding-top: 64px;
+padding-top: 96px;
 
+}
+.keywordlist{
+  padding-top: 96px;
+}
+.navbar-inverse{
+  color: #666;
+}
+.list-unstyled .frstitm a{
+  padding-left: 10px;
+  color: #115;
+  font-size: 16px;
+}
+.list-unstyled .list-unstyled a{
+}
+
+.list-unstyled .list-unstyled .scnditm a{
+  color: #337;
+  font-size: 14px;
+}
+.list-unstyled .list-unstyled .scnditm .glyphicon{
+  padding-left: 30px;
+  font-size: 14px;
+}
+.list-unstyled .list-unstyled .thrditm a{
+
+ color: #559;
+ font-size: 12px;
+}
+
+.list-unstyled .list-unstyled .thrditm .glyphicon{
+ padding-left: 50px;
+ font-size: 10px;
 }

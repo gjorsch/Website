@@ -7,25 +7,25 @@
             <h2>
               AggroVoc items
             </h2>
-            <h3>{{dispData.parent.label}}
+            <h3>{{dispData.parent.name}}
             </h3>
             <hr>
             <ul class="list-unstyled">
               <li ng-repeat="ditem in dispData.parent.narrower">
                 <ul class="list-unstyled">
                   <div class="frstitm">
-                    <a>{{ditem.label}}</a>
+                    <a>{{ditem.name}}</a>
                   </div>
                   <li ng-repeat="narrowitm in ditem.narrower">
                     <ul class="list-unstyled">
                       <div class="scnditm">
                         <p class="glyphicon glyphicon-triangle-right"></p>
-                        <a href="{{narrowitm.label}}">{{narrowitm.label}}</a>
+                        <a href="{{narrowitm.label}}">{{narrowitm.name}}</a>
                       </div>
                       <li ng-repeat="narroweritm in narrowitm.narrower">
                         <div class="thrditm">
                           <p class="glyphicon glyphicon-triangle-right"></p>
-                          <a href="{{narroweritm.id}}">{{narroweritm.id}}</a>
+                          <a href="{{narroweritm.id}}">{{narroweritm.name}}</a>
                         </div>
                       </li>
 
@@ -63,16 +63,17 @@
       <div class="publist">
         <div class="col-md-2">
           <div class="well">
-            <h2>
-              linked datasets
-            </h2>
-            <hr>
-            <ul>
-              <li ng-repeat="opt in links.repeatSelect.links">
-                <p>{{opt}}
-                </p>
-              </li>
-            </ul>
+            <div class="linklist">
+              <h2>
+                linked datasets
+              </h2>
+              <hr>
+              <ul class="list-unstyled">
+                <li ng-repeat="opt in links.demo.Links">{{opt}}
+                  <hr>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

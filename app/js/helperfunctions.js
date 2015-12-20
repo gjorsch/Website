@@ -27,3 +27,18 @@ var getlabel = function(uri, data){
   }
   return dispname;
 };
+
+// get html for specific element
+var getElement = function(input){
+    return $(input).html();
+};
+//get links from dataset
+var filterSelection = function(input,data){
+  var links =[];
+  for (var i = 0; i < data.length; i++) {
+    if(input === data[i]["Name"]){
+      links = data[i]["Links"];
+    };
+  };
+  return links;
+};

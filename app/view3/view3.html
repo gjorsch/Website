@@ -1,7 +1,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-3">
         <div class="subjectlist">
           <div class="well">
             <h2>
@@ -9,23 +9,27 @@
             </h2>
             <h3>{{dispData.parent.name}}
             </h3>
+            <input type="text" ng-model="filterkeyword"/>
             <hr>
+            <div class="subjectlistitems">
             <ul class="list-unstyled">
               <li ng-repeat="ditem in dispData.parent.narrower">
                 <ul class="list-unstyled">
                   <div class="frstitm">
-                    <a>{{ditem.name}}</a>
+                    <a>{{ditem.name | filter:filterkeyword}}</a>
                   </div>
                   <li ng-repeat="narrowitm in ditem.narrower">
                     <ul class="list-unstyled">
                       <div class="scnditm">
-                        <p class="glyphicon glyphicon-triangle-right"></p>
+                        <p class="glyphicon glyphicon-triangle-right" ></p>
                         <a href="{{narrowitm.label}}">{{narrowitm.name}}</a>
                       </div>
                       <li ng-repeat="narroweritm in narrowitm.narrower">
                         <div class="thrditm">
-                          <p class="glyphicon glyphicon-triangle-right"></p>
-                          <a href="{{narroweritm.id}}">{{narroweritm.name}}</a>
+                          <div ng-click="alert(show)">
+                            <p class="glyphicon glyphicon-triangle-right"></p>
+                            <a href="{{narroweritm.id}}">{{narroweritm.name}}</a>
+                          </div>
                         </div>
                       </li>
 
@@ -35,6 +39,7 @@
                 </li>
               </li>
             </ul>
+          </div>
           </div>
         </div>
       </div>
@@ -49,30 +54,33 @@
             </p>
             <form name="myForm">
               <label for="keywordSelect"> select keyword: </label>
-              <select name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
+              <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
                 <option ng-repeat="option in links.availableOptions" value="{{option.Name}}">{{option.Name}}</option>
               </select>
 
             </form>
             <hr>
-            <p>keyword = {{links.repeatSelect}}</p><br/>
-            <p>{{option.Name}}</p>
+            <p class="keyselection">{{links.repeatSelect}}</p><br/>
+            <input type="button" ng-click="getSelection()" value="get Results" />
           </div>
         </div>
       </div>
       <div class="publist">
-        <div class="col-md-2">
+        <div class="col-md-4">
           <div class="well">
             <div class="linklist">
               <h2>
                 linked datasets
               </h2>
               <hr>
+              <div class="linklistitems">
               <ul class="list-unstyled">
-                <li ng-repeat="opt in links.demo.Links">{{opt}}
+                <li ng-repeat="opt in datasets">
+                  <a href="{{opt}}">{{opt}}</a>
                   <hr>
                 </li>
               </ul>
+            </div>
             </div>
           </div>
         </div>

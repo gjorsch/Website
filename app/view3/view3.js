@@ -13,7 +13,6 @@ angular.module('myApp.view3', ['ngRoute'])
   $http.get("data/skos_subjects.json").success(function(data){
     data = data["@graph"];
     var dispData = {};
-
     //find parent node
     for (var i=0; i<data.length; i++){
       if (!data[i]["broader"] && data[i]["narrower"]){
@@ -21,7 +20,6 @@ angular.module('myApp.view3', ['ngRoute'])
           for (var j =0; j < data[i]["prefLabel"].length;j++){
             //if possible use REGEX here for URI language selection
             if(data[i]["prefLabel"][j].slice(35,37)==="en"){
-              console.log(data[i]["prefLabel"][j]);
               dispData.parent = ({id:data[i]["@id"], label:data[i]["prefLabel"][j], narrower: [], name: getName(data[i]["prefLabel"][j],data)});
               for (var k=0; k<data[i]["narrower"].length;k++){
                 dispData["parent"]["narrower"].push({id: data[i]["narrower"][k]});
@@ -72,8 +70,6 @@ angular.module('myApp.view3', ['ngRoute'])
                       for (var m=0; m<data[i]["narrower"].length;m++){
                         if(data[i]["narrower"][m].length>1){
                           dispData["parent"]["narrower"][j]["narrower"][k]["narrower"].push({id: data[i]["narrower"][m], label: getlabel(data[i]["narrower"][m],data), name: getName(getlabel(data[i]["narrower"][m],data),data)});
-                          //console.log(data[i]["narrower"][l]);
-                          //console.log(dispData["parent"]["narrower"][j]["narrower"][k]["narrower"]);
                         };
                       };
                     };
@@ -86,7 +82,7 @@ angular.module('myApp.view3', ['ngRoute'])
       };
     };
     $scope.dispData = dispData;
-    console.log(dispData);
+    //console.log(dispData);
   });
   $http.get("data/output_export_skos-xl_subjects.rdf.json").success(function(links){
     $scope.links = {
@@ -94,6 +90,12 @@ angular.module('myApp.view3', ['ngRoute'])
       availableOptions: links.data,
       demo: links.data[1]
     };
-    console.log($scope.links);
   });
+  //get value of selected keyword from form
+  $scope.getSelection = function (){
+    var selection = getElement(".keyselection");
+    $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
+    console.log($scope.datasets);
+  };
+
 }]);

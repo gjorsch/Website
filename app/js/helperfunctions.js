@@ -42,3 +42,23 @@ var filterSelection = function(input,data){
   };
   return links;
 };
+//highlight selected keyword in hierachy
+var highlightKeyword = function (input){
+  input = input.slice(0,input.length-3);
+
+  $(document).ready(function() {
+    $(".highlight").removeClass("highlight");
+    $("a:contains("+input+")").addClass("highlight");
+  });
+};
+//scroll to highlight
+var scrollToHighlight = function(){
+  $('.subjectlist').scrollTo('highlight'); 
+  console.log("Scroll!");
+};
+//retrieve Name for datasets from GLUES Database
+var getRemoteName = function(url){
+  $.get(url, null, function(text){
+    alert($(text).find('.literal'));
+  });
+};

@@ -52,3 +52,8 @@ boby{
   overflow-y:scroll;
   max-height: 500px;
 }
+/* highlight class for hierarchy */
+.highlight{
+  font-weight: bold;
+  text-decoration: underline;
+}

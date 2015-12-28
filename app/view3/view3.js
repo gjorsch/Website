@@ -96,7 +96,7 @@ angular.module('myApp.view3', ['ngRoute'])
     var selection = getElement(".keyselection");
     $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
     highlightKeyword(selection);
-    scrollToHighlight();
+    
   };
 
 }]);

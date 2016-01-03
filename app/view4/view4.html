@@ -1,139 +1,80 @@
-<div class="tree well">
-    <ul>
-        <li>
-            <span><i class="icon-folder-open"></i> Parent</span> <a href="">Goes somewhere</a>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="subjectlist ">
+        <div class="col-md-3">
+          <div class="tree well">
+            <h2>
+              AggroVoc items
+            </h2>
+            <hr>
+            <h3>{{structData.parent.name}}
+            </h3>
             <ul>
-                <li>
-                	<span><i class="icon-minus-sign"></i> Child</span> <a href="">Goes somewhere</a>
+              <li ng-repeat="ditem in structData.parent.narrower">
+                <span><i class="icon-folder-open"></i> {{ditem.name}}</span> <a href=""></a>
+                <ul>
+                  <li ng-repeat="narrowitm in ditem.narrower">
+                    <span><i class="icon-minus-sign"></i> {{narrowitm.name}}</span> <a href=""></a>
                     <ul>
-                        <li>
-	                        <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
+                      <li>
+                        <span><i class="icon-leaf"></i> Grand Child</span> <a href=""></a>
+                      </li>
                     </ul>
-                </li>
-                <li>
-                	<span><i class="icon-minus-sign"></i> Child</span> <a href="">Goes somewhere</a>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
-                        <li>
-                        	<span><i class="icon-minus-sign"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                            <ul>
-                                <li>
-	                                <span><i class="icon-minus-sign"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-		                            <ul>
-		                                <li>
-			                                <span><i class="icon-leaf"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
-		                                </li>
-		                                <li>
-			                                <span><i class="icon-leaf"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
-		                                </li>
-		                             </ul>
-                                </li>
-                                <li>
-	                                <span><i class="icon-leaf"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-                                </li>
-                                <li>
-	                                <span><i class="icon-leaf"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-	                        <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
-                    </ul>
-                </li>
+                  </li>
+                </ul>
+              </li>
             </ul>
-        </li>
-        <li>
-            <span><i class="icon-folder-open"></i> Parent2</span> <a href="">Goes somewhere</a>
-            <ul>
-                <li>
-                	<span><i class="icon-leaf"></i> Child</span> <a href="">Goes somewhere</a>
-		        </li>
-		    </ul>
-        </li>
-    </ul>
-</div>
+          </div>
+        </div>
+      </div>
+      <div class="keywordlist">
+        <div class="col-md-5">
+          <div class="well">
+            <h2>
+              keyword list
+            </h2>
 
-<div class="tree">
-    <ul>
-        <li>
-            <span><i class="icon-calendar"></i> 2013, Week 2</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Monday, January 7: 8.00 hours</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> 8.00</span> &ndash; Changed CSS to accomodate...</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Tuesday, January 8: 8.00 hours</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> 6.00</span> &ndash; <a href="">Altered code...</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> 2.00</span> &ndash; <a href="">Simplified our approach to...</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-warning"><i class="icon-minus-sign"></i> Wednesday, January 9: 6.00 hours</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> 3.00</span> &ndash; Fixed bug caused by...</a>
-                        </li>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> 3.00</span> &ndash; Comitting latest code to Git...</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                	<span class="badge badge-important"><i class="icon-minus-sign"></i> Wednesday, January 9: 4.00 hours</span>
-                    <ul>
-                        <li>
-	                        <a href=""><span><i class="icon-time"></i> 2.00</span> &ndash; Create component that...</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span><i class="icon-calendar"></i> 2013, Week 3</span>
-            <ul>
-                <li>
-                	<span class="badge badge-success"><i class="icon-minus-sign"></i> Monday, January 14: 8.00 hours</span>
-                    <ul>
-                        <li>
-	                        <span><i class="icon-time"></i> 7.75</span> &ndash; <a href="">Writing documentation...</a>
-                        </li>
-                        <li>
-	                        <span><i class="icon-time"></i> 0.25</span> &ndash; <a href="">Reverting code back to...</a>
-                        </li>
-                    </ul>
-                </li>
-		    </ul>
-        </li>
-    </ul>
-</div>
+            <p>
+              linked keywords from GLUES database
+            </p>
+            <hr>
+            <form name="myForm">
+              <label for="keywordSelect"> select keyword: </label>
+              <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
+                <option ng-repeat="option in links.availableOptions" value="{{option.Name}}">{{option.Name}}</option>
+              </select>
 
-<script>
-$(function () {
-    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    $('.tree li.parent_li > span').on('click', function (e) {
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
-        if (children.is(":visible")) {
-            children.hide('fast');
-            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-        } else {
-            children.show('fast');
-            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-        }
-        e.stopPropagation();
-    });
-});
-</script>
+            </form>
+            <hr>
+            <p class="keyselection">{{links.repeatSelect}}</p><br/>
+            <input type="button" ng-click="getSelection()" value="Show Datasets" />
+          </div>
+        </div>
+      </div>
+      <div class="publist">
+        <div class="col-md-4">
+          <div class="well">
+            <div class="linklist">
+              <h2>
+                linked datasets
+              </h2>
+              <hr>
+              <div class="linklistitems">
+              <ul class="list-unstyled">
+                <li ng-repeat="opt in datasets">
+                  <a href="{{opt}}">{{opt}}</a>
+                  <hr>
+                </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+<script src="js/collapse.js"></script>

@@ -13,8 +13,23 @@ angular.module('myApp.view4', ['ngRoute'])
   $http.get("data/skos_subjects.json").success(function(data){
     data = data["@graph"];
     var structData = getParent(data);
-    structData = defineNextLevel(structData,data);
+    structData = define2ndLevel(structData,data);
     console.log(structData);
-
+    $scope.structData = structData;
   });
+  //get links to GLUES Datasets
+  $http.get("data/output_export_skos-xl_subjects.rdf.json").success(function(links){
+    $scope.links = {
+      repeatSelect: null,
+      availableOptions: links.data,
+      demo: links.data[1]
+    };
+  });
+  //get value of selected keyword from form
+  $scope.getSelection = function (){
+    var selection = getElement(".keyselection");
+    $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
+    highlightKeyword(selection);
+
+  };
 }]);

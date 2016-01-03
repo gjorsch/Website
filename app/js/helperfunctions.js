@@ -19,10 +19,9 @@ var getParent = function(data){
   return dispData;
 };
 //define 2nd level hierachy nodes
-var defineNextLevel = function(data,rawData){
+var define2ndLevel = function(data,rawData){
   var narrowerItms = data["parent"]["narrower"];
   for (var i=0; i<narrowerItms.length; i++){
-    console.log(narrowerItms[i]);
     narrowerItms[i]["label"] = getlabel(narrowerItms[i]["id"],rawData);
     narrowerItms[i]["name"] = getName(narrowerItms[i]["label"],rawData);
     if(checkNarrower(narrowerItms[i]["id"],rawData)){
@@ -49,7 +48,6 @@ var getNarrowerItms = function (uri, rawData) {
   for (var i=0; i<rawData.length; i++){
     if(rawData[i]["@id"]===uri){
       if(rawData[i]["narrower"]){
-        console.log("hit!");
         for(var j=0; j<rawData[i]["narrower"].length;j++){
           var tempObj = {id:rawData[i]["narrower"][j],label:getlabel(rawData[i]["narrower"][j],rawData),name:getName(getlabel(rawData[i]["narrower"][j],rawData),rawData)};
           narrowerItms.push(tempObj);
@@ -120,7 +118,6 @@ var getRemoteName = function(url){
 };
 //collapse hierachy
 $(function () {
-  console.log("hit");
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
     $('.tree li.parent_li > span').on('click', function (e) {
         var children = $(this).parent('li.parent_li').find(' > ul > li');

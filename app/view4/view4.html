@@ -11,9 +11,9 @@
             <h3>{{structData.parent.name}}
             </h3>
             <ul>
-              <li ng-repeat="ditem in structData.parent.narrower">
+              <li ng-repeat="ditem in structData.parent.narrower" data-toggle="collapse" data-target="#demo">
                 <span><i class="icon-folder-open"></i> {{ditem.name}}</span> <a href=""></a>
-                <ul>
+                <ul id="demo" class="collapse">
                   <li ng-repeat="narrowitm in ditem.narrower">
                     <span><i class="icon-minus-sign"></i> {{narrowitm.name}}</span> <a href=""></a>
                     <ul>

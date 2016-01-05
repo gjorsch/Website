@@ -8,23 +8,27 @@
               AggroVoc items
             </h2>
             <hr>
-            <h3>{{structData.parent.name}}
-            </h3>
-            <ul>
-              <li ng-repeat="ditem in structData.parent.narrower" data-toggle="collapse" data-target="#demo">
-                <span><i class="icon-folder-open"></i> {{ditem.name}}</span> <a href=""></a>
-                <ul id="demo" class="collapse">
-                  <li ng-repeat="narrowitm in ditem.narrower">
-                    <span><i class="icon-minus-sign"></i> {{narrowitm.name}}</span> <a href=""></a>
+            <accordion>
+              <accordion-group heading="{{structData.parent.name}}" is-open="false">
+                <ul>
+                  <li ng-repeat="ditem in structData.parent.narrower">
+                    <span><i class="icon-folder-open"></i> {{ditem.name}}</span> <a href=""></a>
+                    <accordion-group heading="{{ditem.name}}" is-open="false">
                     <ul>
-                      <li>
-                        <span><i class="icon-leaf"></i> Grand Child</span> <a href=""></a>
+                      <li ng-repeat="narrowitm in ditem.narrower">
+                        <span><i class="icon-minus-sign"></i> {{narrowitm.name}}</span> <a href=""></a>
+                        <ul>
+                          <li>
+                            <span><i class="icon-leaf"></i> Grand Child</span> <a href=""></a>
+                          </li>
+                        </ul>
                       </li>
                     </ul>
+                  </accordion-group>
                   </li>
                 </ul>
-              </li>
-            </ul>
+              </accordion-group>
+            </accordion>
           </div>
         </div>
       </div>
@@ -61,13 +65,13 @@
               </h2>
               <hr>
               <div class="linklistitems">
-              <ul class="list-unstyled">
-                <li ng-repeat="opt in datasets">
-                  <a href="{{opt}}">{{opt}}</a>
-                  <hr>
-                </li>
-              </ul>
-            </div>
+                <ul class="list-unstyled">
+                  <li ng-repeat="opt in datasets">
+                    <a href="{{opt}}">{{opt}}</a>
+                    <hr>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

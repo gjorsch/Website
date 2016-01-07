@@ -30,6 +30,39 @@ var define2ndLevel = function(data,rawData){
   };
   return data;
 };
+//define 3rd level hierachy nodes
+var define3rdLevel = function(data,rawData){
+  if(data["parent"]["narrower"]){
+    for (var i = 0; i < data["parent"]["narrower"].length; i++) {
+      if(data["parent"]["narrower"][i]["narrower"]){
+        var narrowerItms = data["parent"]["narrower"][i]["narrower"];
+        for (var j = 0; j < narrowerItms.length; j++) {
+          narrowerItms[j]["narrower"]= getNarrowerItms(narrowerItms[j]["id"],rawData);
+        }
+      }
+    }
+  }
+  return data;
+};
+//define 4th level hierachy nodes
+var define4thLevel = function(data,rawData){
+  if(data["parent"]["narrower"]){
+    for (var i = 0; i < data["parent"]["narrower"].length; i++) {
+      if(data["parent"]["narrower"][i]["narrower"]){
+        for (var j = 0; j < data["parent"]["narrower"][i]["narrower"].length; j++) {
+          if(data["parent"]["narrower"][i]["narrower"][j]["narrower"]){
+              var narrowerItms = data["parent"]["narrower"][i]["narrower"][j]["narrower"];
+              for (var k = 0; k < narrowerItms.length; k++) {
+                narrowerItms[k]["narrower"]= getNarrowerItms(narrowerItms[k]["id"],rawData);
+              }
+            }
+        }
+      }
+    }
+  }
+  return data;
+};
+
 //check for narrower Items
 var checkNarrower = function(uri,rawData){
   var narrow = false;
@@ -116,18 +149,3 @@ var getRemoteName = function(url){
     alert($(text).find('.literal'));
   });
 };
-//collapse hierachy
-$(function () {
-    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    $('.tree li.parent_li > span').on('click', function (e) {
-        var children = $(this).parent('li.parent_li').find(' > ul > li');
-        if (children.is(":visible")) {
-            children.hide('fast');
-            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
-        } else {
-            children.show('fast');
-            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
-        }
-        e.stopPropagation();
-    });
-});

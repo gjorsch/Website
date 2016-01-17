@@ -38,6 +38,13 @@
               </uib-accordion-group>
             </uib-accordion>
           </div>
+          <hr>
+          <form name="languageForm">
+            <label for="langSelect"> select language: </label>
+            <select class="langselection" name="langSelect" id="langSelect" ng-model="language.selected" ng-options="option.name for option in language.availableOptions track by option.short" ng-model="language.selected">
+            </select>
+          </form>
+        <a class="btn btn-info btn-lg" ng-click="updatetree()">set language</a>
         </div>
       </div>
     </div>
@@ -56,11 +63,23 @@
             <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
               <option ng-repeat="option in links.availableOptions" value="{{option.Name}}">{{option.Name}}</option>
             </select>
-
           </form>
           <hr>
-          <p class="keyselection">{{links.repeatSelect}}</p><br/>
-          <input type="button" ng-click="getSelection()" value="Show Datasets" />
+          <div class="keywordselection">
+
+          <p>
+            <a class="btn btn-info btn-lg showdatasets" ng-click="getSelection()">
+              <span class="glyphicon glyphicon-info-sign" ></span> Show Datasets
+            </a>
+          </p>
+          <p>
+            <a class="btn btn-info btn-lg" ng-click="goToAggrovoc()">
+              <span class="glyphicon glyphicon-info-sign" ></span> Go to Aggro Voc entry
+            </a>
+          </p>
+          <p class="keyselection selecteditm">{{links.repeatSelect}}</p><br/>
+
+        </div>
         </div>
       </div>
     </div>
@@ -89,4 +108,3 @@
 </div>
 
 </body>
-<script src="js/collapse.js"></script>

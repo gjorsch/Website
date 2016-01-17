@@ -97,3 +97,10 @@ boby{
     top:25px;
     width:25px
 }
+.selecteditm {
+  visibility: hidden;
+}
+.keywordselection p a{
+  padding: 10px;
+  margin-top: 10px;
+}

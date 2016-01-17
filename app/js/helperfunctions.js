@@ -1,3 +1,5 @@
+//
+var lang= "en";
 //find parent Node
 var getParent = function(data){
   var dispData = {};
@@ -6,7 +8,7 @@ var getParent = function(data){
       if (data[i]["prefLabel"] != undefined){
         for (var j =0; j < data[i]["prefLabel"].length;j++){
           //if possible use REGEX here for URI language selection
-          if(data[i]["prefLabel"][j].slice(35,37)==="en"){
+          if(data[i]["prefLabel"][j].slice(35,37)=== lang){
             dispData.parent = ({id:data[i]["@id"], label:data[i]["prefLabel"][j], narrower: [], name: getName(data[i]["prefLabel"][j],data)});
             for (var k=0; k<data[i]["narrower"].length;k++){
               dispData["parent"]["narrower"].push({id: data[i]["narrower"][k]});
@@ -110,7 +112,7 @@ var getlabel = function(uri, data){
     if(uri === data[i]["@id"]){
       if(data[i]["prefLabel"] != undefined){
         for (var l =0; l<data[i]["prefLabel"].length;l++){
-          if(data[i]["prefLabel"][l].slice(35,37)==="en"){
+          if(data[i]["prefLabel"][l].slice(35,37)=== lang){
             dispname = data[i]["prefLabel"][l];
           }
         }
@@ -134,6 +136,20 @@ var filterSelection = function(input,data){
   };
   return links;
 };
+//find AggroVoc links
+var getAggroLink = function(input,data){
+  var link = null;
+  for (var i = 0; i < data.length; i++) {
+    if(input === data[i]["Name"]){
+      link = data[i]["ID"];
+    };
+  };
+  return link;
+};
+// return selected language
+var getlanguage = function(){
+  return lang;
+}
 //highlight selected keyword in hierachy
 var highlightKeyword = function (input){
   input = input.slice(0,input.length-3);

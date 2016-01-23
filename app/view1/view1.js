@@ -5,24 +5,63 @@ angular.module('myApp.view1', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+    controller: 'view1Ctrl'
   });
 }])
 
-.controller('View1Ctrl', ["$scope", "$http", function($scope, $http) {
-  $http.get("data/skos_groups.json").success(function(data){
-    var dispData = [];
-    var lessRespData;
-    data = data["@graph"];
-    for (var i = 0; i < data.length; i++) {
-		  lessRespData = data[i]["skosxl:literalForm"];
-			if (lessRespData != undefined){
-				if (lessRespData["@language"]== "de"){
-					dispData.push({id: data[i]["@id"],language: lessRespData["@language"], value: lessRespData["@value"]});
-				}
-			}
-  	}
-    $scope.data = dispData;
-    console.log($scope.data);
+.controller('view1Ctrl', ["$scope", "$http",'$location', '$anchorScroll', function($scope, $http, $location, $anchorScroll) {
+  $scope.language = {
+    selected: "en",
+    availableOptions: [{name:"deutsch",short: "de"},{name:"english", short :"en"}]
+  };
+
+    $scope.gotoHighlight = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $timeout(function(){
+        $location.hash("highlight");
+        console.log("hit!");
+        // call $anchorScroll()
+        $anchorScroll();
+    });
+    };
+
+  $scope.getlang = function(){
+    lang = $scope.language.selected.short;
+    console.log("click");
+    console.log($scope.language.selected.short);
+  };
+  $scope.updatetree  = function(){
+    $http.get("data/skos_subjects.json").success(function(data){
+      lang = $scope.language.selected.short;
+      console.log("click");
+      console.log($scope.language.selected.short);
+      data = data["@graph"];
+      var structData = getParent(data);
+      structData = define2ndLevel(structData,data);
+      structData = define3rdLevel(structData,data);
+      structData = define4thLevel(structData,data);
+      //console.log(structData);
+      $scope.structData = structData;
+    });
+  };
+  //get links to GLUES Datasets
+  $http.get("data/output_export_skos-xl_subjects.rdf.json").success(function(links){
+    $scope.links = {
+      repeatSelect: null,
+      availableOptions: links.data,
+      demo: links.data[1]
+    };
   });
+  //get value of selected keyword from form
+  $scope.getSelection = function (){
+    var selection = getElement(".keyselection");
+    $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
+    highlightKeyword(selection);
+  };
+  $scope.goToAggrovoc = function(){
+    var selection = getElement(".keyselection");
+    $scope.aggroLink = getAggroLink(selection,$scope.links.availableOptions);
+    window.open($scope.aggroLink);
+  };
 }]);

@@ -53,13 +53,15 @@ boby{
   max-height: 500px;
 }
 /* highlight class for hierarchy */
-.panel-default > .panel-heading .highlight{
-    background-color: red;
-}
+
 .highlight{
   font-weight: bold;
   text-decoration: underline;
+  background-image: linear-gradient("to bottom",#5BC0DE,#2F96B4);
 
+}
+.panel-default .hightlight div {
+  background-color: #5BC0DE;
 }
 
 .keywordlist .select{

@@ -122,6 +122,7 @@ var getlabel = function(uri, data){
   return dispname;
 };
 
+
 // get html for specific element
 var getElement = function(input){
     return $(input).html();
@@ -156,7 +157,7 @@ var highlightKeyword = function (input){
 
   $(document).ready(function() {
     $(".highlight").removeClass("highlight");
-    $("a:contains("+input+")").addClass("highlight");
+    $("a:contains("+input+")").parent().parent().addClass("highlight");
   });
 };
 //retrieve Name for datasets from GLUES Database

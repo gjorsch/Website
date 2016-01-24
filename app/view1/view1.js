@@ -15,13 +15,10 @@ angular.module('myApp.view1', ['ngRoute'])
     availableOptions: [{name:"deutsch",short: "de"},{name:"english", short :"en"}]
   };
 
-    $scope.gotoHighlight = function() {
-      // set the location.hash to the id of
-      // the element you wish to scroll to.
+    $scope.gotoHighlight = function() {  
       $timeout(function(){
         $location.hash("highlight");
         console.log("hit!");
-        // call $anchorScroll()
         $anchorScroll();
     });
     };

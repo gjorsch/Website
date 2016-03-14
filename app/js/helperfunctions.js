@@ -1,5 +1,7 @@
-//
-var lang= "en";
+//globals and defaults
+var activeSelection = "";
+
+
 //find parent Node
 var getParent = function(data){
   var dispData = {};
@@ -132,13 +134,15 @@ var filterSelection = function(input,data){
   var links =[];
   for (var i = 0; i < data.length; i++) {
     if(input === data[i]["Name"]){
+      activeSelection = data[i]["ID"];
+      console.log(activeSelection);
       links = data[i]["Links"];
     };
   };
   return links;
 };
-//find AggroVoc links
-var getAggroLink = function(input,data){
+//find AgroVoc links
+var getAgroLink = function(input,data){
   var link = null;
   for (var i = 0; i < data.length; i++) {
     if(input === data[i]["Name"]){
@@ -157,7 +161,11 @@ var highlightKeyword = function (input){
 
   $(document).ready(function() {
     $(".highlight").removeClass("highlight");
-    $("a:contains("+input+")").parent().parent().addClass("highlight");
+    //$("a:contains("+input+")").parent().parent().addClass("highlight");
+
+    //use to refer by ID not as by name as above
+    //corresponding ID is missing in keywordlist-json
+    $("#"+activeSelection).parent().addClass("highlight");
   });
 };
 //retrieve Name for datasets from GLUES Database

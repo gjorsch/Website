@@ -11,7 +11,7 @@ angular.module('myApp.view3', ['ngRoute'])
 
 .controller('view3Ctrl', ["$scope", "$http",'$location', '$anchorScroll', function($scope, $http, $location, $anchorScroll) {
   $scope.language = {
-    selected: "en",
+    selected: {name:"english", short :"en"},
     availableOptions: [{name:"deutsch",short: "de"},{name:"english", short :"en"}]
   };
 
@@ -28,37 +28,33 @@ angular.module('myApp.view3', ['ngRoute'])
     console.log("click");
     console.log($scope.language.selected.short);
   };
-  $scope.updatetree  = function(){
-    $http.get("data/skos_entities.json").success(function(data){
-      lang = $scope.language.selected.short;
-      console.log("click");
-      console.log($scope.language.selected.short);
-      data = data["@graph"];
-      var structData = getParent(data);
-      structData = define2ndLevel(structData,data);
-      structData = define3rdLevel(structData,data);
-      structData = define4thLevel(structData,data);
-      //console.log(structData);
-      $scope.structData = structData;
-    });
-  };
+
+
   //get links to GLUES Datasets
-  $http.get("data/output_export_skos-xl_entities.rdf.json").success(function(links){
+  $http.get("data/keywords/processed_output_export_skos-xl_entities.json").success(function(links){
     $scope.links = {
       repeatSelect: null,
       availableOptions: links.data,
       demo: links.data[1]
     };
+    console.log($scope.links);
+  });
+  //get hierachy data
+  $http.get("data/hierachy/entities.json").success(function(data){
+    $scope.structData = data;
+    console.log($scope.structData);
   });
   //get value of selected keyword from form
   $scope.getSelection = function (){
     var selection = getElement(".keyselection");
+    console.log(selection);
     $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
+    console.log($scope.datasets);
     highlightKeyword(selection);
   };
-  $scope.goToAggrovoc = function(){
+  $scope.goToAgrovoc = function(){
     var selection = getElement(".keyselection");
-    $scope.aggroLink = getAggroLink(selection,$scope.links.availableOptions);
-    window.open($scope.aggroLink);
+    $scope.agroLink = getAgroLink(selection,$scope.links.availableOptions);
+    window.open($scope.agroLink);
   };
 }]);

@@ -47,10 +47,15 @@ boby{
   background-color: #444;
 }
 .linklist .list-unstyled{
+  padding-left: 10px;
   font-size: 9px;
   overflow:hidden;
   overflow-y:scroll;
   max-height: 500px;
+}
+.linklist .linkTitle a{
+  font-size: 12px;
+  font-weight: bold;
 }
 /* highlight class for hierarchy */
 

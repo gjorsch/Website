@@ -14,16 +14,16 @@
               <uib-accordion-group ng-repeat ="name in structData.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="true">
                 <ul class ="firstLevel">
                   <li ng-repeat="ditem in structData.narrower" >
-                    <span><uib-accordion-group ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.label}}">
+                    <span><uib-accordion-group ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
                       <ul class="secondLevel">
                         <li ng-repeat="narrowitm in ditem.narrower">
-                          <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.label}}">
+                          <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.id}}">
                             <ul class="thirdLevel">
                               <li ng-repeat="narroweritm in narrowitm.narrower">
-                                <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.label}}">
+                                <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.id}}">
                                   <ul class="fourthLevel">
                                     <li ng-repeat="narrowereritm in narroweritm.narrower">
-                                      <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.label}}">
+                                      <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.id}}">
                                       </span>
                                   </ul>
                                 </span>

@@ -43,7 +43,7 @@ padding-top: 96px;
 .navbar-fixed-bottom{
   min-height: 16px;
 }
-boby{
+body{
   background-color: #444;
 }
 .linklist .list-unstyled{
@@ -59,14 +59,8 @@ boby{
 }
 /* highlight class for hierarchy */
 
-.highlight{
-  font-weight: bold;
-  text-decoration: underline;
-  background-image: linear-gradient("to bottom",#5BC0DE,#2F96B4);
-
-}
-.panel-default .hightlight div {
-  background-color: #5BC0DE;
+.panel-group .panel .highlight {
+  border: 8px solid #5BC0DE;
 }
 
 .keywordlist .select{
@@ -110,4 +104,7 @@ boby{
 .keywordselection p a{
   padding: 10px;
   margin-top: 10px;
+}
+.selectedkeyword {
+  color: blue;
 }

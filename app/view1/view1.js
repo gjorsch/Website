@@ -47,7 +47,6 @@ angular.module('myApp.view1', ['ngRoute'])
   //get value of selected keyword from form
   $scope.getSelection = function (){
     var selection = getElement(".keyselection");
-    console.log(selection);
     $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
     console.log($scope.datasets);
     highlightKeyword(selection);

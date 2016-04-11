@@ -156,16 +156,16 @@ var getlanguage = function(){
   return lang;
 }
 //highlight selected keyword in hierachy
-var highlightKeyword = function (input){
-  input = input.slice(0,input.length-3);
-
+var highlightKeyword = function (){
+  console.log("bing!");
+  console.log(activeSelection);
   $(document).ready(function() {
     $(".highlight").removeClass("highlight");
     //$("a:contains("+input+")").parent().parent().addClass("highlight");
 
     //use to refer by ID not as by name as above
     //corresponding ID is missing in keywordlist-json
-    $("#"+activeSelection).parent().addClass("highlight");
+    $(document.getElementById(activeSelection)).addClass("highlight");
   });
 };
 //retrieve Name for datasets from GLUES Database

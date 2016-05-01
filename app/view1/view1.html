@@ -14,16 +14,28 @@
               <uib-accordion-group ng-repeat ="name in structData.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="true">
                 <ul class ="firstLevel">
                   <li ng-repeat="ditem in structData.narrower" >
-                    <span><uib-accordion-group ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
+                    <span><uib-accordion-group  ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
+                      <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                        <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                      </a>
                       <ul class="secondLevel">
                         <li ng-repeat="narrowitm in ditem.narrower">
                           <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.id}}">
+                            <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                              <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                            </a>
                             <ul class="thirdLevel">
                               <li ng-repeat="narroweritm in narrowitm.narrower">
                                 <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.id}}">
+                                  <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                    <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                                  </a>
                                   <ul class="fourthLevel">
                                     <li ng-repeat="narrowereritm in narroweritm.narrower">
                                       <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.id}}">
+                                        <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                          <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                                        </a>
                                       </span>
                                   </ul>
                                 </span>
@@ -59,29 +71,39 @@
           linked keywords from GLUES database
         </p>
         <hr>
-        <form name="myForm">
+        <form name="keywordForm">
           <label for="keywordSelect"> select keyword: </label>
-          <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect">
-            <option ng-repeat="option in links.availableOptions" value="{{option.Name}}">{{option.Name}}</option>
+          <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect" ng-change ="addHighlight()">
+            <option ng-repeat="option in links.availableOptions" value="{{option.ID}}">{{option.Name}}</option>
           </select>
         </form>
         <hr>
         <div class="keywordselection">
 
-        <p>
-          <a class="btn btn-info btn-lg showdatasets" ng-click="getSelection()">
-            <span class="glyphicon glyphicon-info-sign" ></span> Show Datasets
-          </a>
-        </p>
-        <p>
           <a class="btn btn-info btn-lg" ng-click="goToAgrovoc()">
             <span class="glyphicon glyphicon-info-sign" ></span> Go to AgroVoc entry
           </a>
         </p>
-        <p class="keyselection selecteditm">{{links.repeatSelect}}</p><br/>
 
       </div>
+      <hr>
+      <div>
+        <form novalidate>
+          Dataset URI:<br>
+          <input type="text" ng-model="newItem.uri"><br>
+          Dataset Title:<br>
+          <input type="text" ng-model="newItem.title">
+          Dataset subjects:<br>
+          <input type="text" ng-model="newItem.subjects">
+          <br><br>
+          <button ng-click="addItem()">Add Item</button>
+        </form>
+        <p>Uri = {{uri}}</p>
+        <p>title = {{title}}</p>
+        <p>subjects = {{subjects}}</p>
       </div>
+      </div>
+
     </div>
   </div>
   <div class="publist">
@@ -93,21 +115,25 @@
           </h2>
           <hr>
           <div class="linklistitems">
-            <ul class="list-unstyled">
-              <li class="linkTitle" ng-repeat="opt in datasets |filter :{title: '!!'}">
-
-                  <a ng-if="opt.title != null" href="{{opt.ID}}">{{opt.title}}</a>
-                  <span>
-                  <ul class="list-inline">
-                    <h6>Subjects: </h6>
-                    <li ng-repeat="subs in opt.subjects  ">
-                      <p>{{subs+','}}</p>
-                    </ul>
-                  </span>
-                <hr>
+            <ul class = "list-unstyled">
+              <li class ="linkitems" ng-repeat = "item in links.availableOptions | filter: filterExpression">
+                {{item.Name}}
+                <ul class="list-unstyled">
+                  <li class="linkTitle" ng-repeat="opt in item.Links |filter :{title: '!!'}">
+                      <a ng-if="opt.title != null" href="{{opt.ID}}">{{opt.title}}</a>
+                      <span>
+                      <ul class="list-inline">
+                        <h6>Subjects: </h6>
+                        <li ng-repeat="subs in opt.subjects  ">
+                          <p>{{subs+','}}</p>
+                        </li>
+                      </ul>
+                    </span>
+                    <hr>
+                  </li>
+                </ul>
               </li>
             </ul>
-
           </div>
         </div>
       </div>

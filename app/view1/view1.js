@@ -33,27 +33,49 @@ angular.module('myApp.view1', ['ngRoute'])
   //get links to GLUES Datasets
   $http.get("data/keywords/processed_output_export_skos-xl_subjects.json").success(function(links){
     $scope.links = {
-      repeatSelect: null,
+      repeatSelect: activeSelection,
       availableOptions: links.data,
-      demo: links.data[1]
     };
     console.log($scope.links);
+
   });
   //get hierachy data
   $http.get("data/hierachy/subjects.json").success(function(data){
     $scope.structData = data;
     console.log($scope.structData);
   });
-  //get value of selected keyword from form
-  $scope.getSelection = function (){
-    var selection = getElement(".keyselection");
-    $scope.datasets = filterSelection(selection,$scope.links.availableOptions);
-    console.log($scope.datasets);
-    highlightKeyword(selection);
+
+  $scope.addHighlight = function(){
+    console.log("highlight");
+    highlightKeyword($scope.links.repeatSelect);
   };
+
   $scope.goToAgrovoc = function(){
-    var selection = getElement(".keyselection");
-    $scope.agroLink = getAgroLink(selection,$scope.links.availableOptions);
-    window.open($scope.agroLink);
+    window.open($scope.links.repeatSelect);
   };
+
+  //add Dataitem to GLUES Dataset links
+  $scope.addItem = function(){
+    //add logic to add input to GLUES datasets
+    //needs URI of keyword and Input from Form
+    console.log("Click!");
+    //add to Links of selected Dataset
+    for (var i = 0; i < $scope.links.availableOptions.length; i++) {
+      if($scope.links.availableOptions[i].ID === $scope.links.repeatSelect){
+          $scope.links.availableOptions[i].Links.push(transformToGLI($scope.newItem.uri,$scope.newItem.title,$scope.newItem.subjects));
+      }
+    }
+  }
+
+  //select keyword from hierachy
+  $scope.selectKeywordFromHierachy = function (ID){
+    console.log(ID.currentTarget);
+    var keywordID = $(ID.currentTarget).parent().parent().parent()[0].id;
+    console.log(keywordID);
+    $scope.links.repeatSelect = keywordID;
+    console.log($scope.links.repeatSelect);
+  }
+  $scope.filterExpression = function(item) {
+  return (item.ID === $scope.links.repeatSelect);
+}
 }]);

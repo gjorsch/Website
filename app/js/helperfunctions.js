@@ -42,3 +42,15 @@ var transformToGLI = function(URI,title,Subjects){
 
   return object;
 }
+// writeJSON Data to file
+var createDownloadLink = function(anchorSelector, str){
+	if(window.navigator.msSaveOrOpenBlob) {
+		var fileData = [str];
+		blobObject = new Blob(fileData);
+    console.log(fileData);
+			window.navigator.msSaveOrOpenBlob(blobObject, "GLUESDataSet.json");
+	} else {
+		var url = "data:text/plain;charset=utf-8," + encodeURIComponent(str);
+		$(anchorSelector).attr("href", url);
+	};
+};

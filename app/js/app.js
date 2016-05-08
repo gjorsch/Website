@@ -1,17 +1,17 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('LinkedDataBrowserApp', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.view3',
-  'myApp.view4',
-  'myApp.view5',
-  'myApp.view6',
-  'myApp.version',
+  'LinkedDataBrowserApp.subjects',
+  'LinkedDataBrowserApp.activities',
+  'LinkedDataBrowserApp.entities',
+  'LinkedDataBrowserApp.groups',
+  'LinkedDataBrowserApp.measure',
+  'LinkedDataBrowserApp.resources',
+  'LinkedDataBrowserApp.version',
   'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/subjects'});
 }]);

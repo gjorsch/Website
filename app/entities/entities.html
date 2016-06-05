@@ -1,148 +1,164 @@
+<!-- Subpage to display entities excerpt from AgroVoc Database  -->
+<!-- this html file is identical for all AgroVoc excerpts -->
 <body>
-<div class="container">
-  <div class="row">
-    <div class="subjectlist ">
-      <div class="col-md-5">
-        <div class="tree well ">
-          <h2>
-            AgroVoc items
-          </h2>
-          <hr>
-          <div id="scrollArea">
-          <div class="subjectlistitems">
-            <uib-accordion close-others="oneAtATime">
-              <uib-accordion-group ng-repeat ="name in structData.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="true">
-                <ul class ="firstLevel">
-                  <li ng-repeat="ditem in structData.narrower" >
-                    <span><uib-accordion-group  ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
-                      <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
-                        <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
-                      </a>
-                      <ul class="secondLevel">
-                        <li ng-repeat="narrowitm in ditem.narrower">
-                          <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.id}}">
-                            <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
-                              <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
-                            </a>
-                            <ul class="thirdLevel">
-                              <li ng-repeat="narroweritm in narrowitm.narrower">
-                                <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.id}}">
-                                  <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
-                                    <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
-                                  </a>
-                                  <ul class="fourthLevel">
-                                    <li ng-repeat="narrowereritm in narroweritm.narrower">
-                                      <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.id}}">
-                                        <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
-                                          <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
-                                        </a>
+
+  <div class="container">
+
+    <div class="row">
+
+      <!-- List for all Agrovoc Entries -->
+      <!-- hierachy is prebuilt with java Application, but still takes time to render on screen  -->
+
+      <div class="subjectlist ">
+        <div class="col-md-5">
+          <div class="tree well ">
+            <h2>
+              AgroVoc items
+            </h2>
+            <hr>
+            <div id="scrollArea">
+              <div class="subjectlistitems">
+                <uib-accordion close-others="oneAtATime">
+                  <uib-accordion-group ng-repeat ="name in structData.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="true">
+                    <ul class ="firstLevel">
+                      <li ng-repeat="ditem in structData.narrower" >
+                        <span><uib-accordion-group  ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
+                          <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                            <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                          </a>
+                          <ul class="secondLevel">
+                            <li ng-repeat="narrowitm in ditem.narrower">
+                              <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.id}}">
+                                <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                  <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                                </a>
+                                <ul class="thirdLevel">
+                                  <li ng-repeat="narroweritm in narrowitm.narrower">
+                                    <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.id}}">
+                                      <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                        <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                                      </a>
+                                      <ul class="fourthLevel">
+                                        <li ng-repeat="narrowereritm in narroweritm.narrower">
+                                          <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.id}}">
+                                            <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                              <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
+                                            </a>
+                                          </span>
+                                        </ul>
                                       </span>
+                                    </li>
                                   </ul>
                                 </span>
                               </li>
                             </ul>
-                          </span>
-                        </li>
-                      </ul>
-                    </uib-accordion-group>
-                  </span>
-                </li>
-              </ul>
-            </uib-accordion-group>
-          </uib-accordion>
+                          </uib-accordion-group>
+                        </span>
+                      </li>
+                    </ul>
+                  </uib-accordion-group>
+                </uib-accordion>
+              </div>
+            </div>
+            <hr>
+
+            <!-- pulldown to display the language selection -->
+            <form name="languageForm">
+              <label for="langSelect"> select language: </label>
+              <select class="langselection" name="langSelect" id="langSelect" ng-model="language.selected" ng-options="option.name for option in language.availableOptions track by option.short" >
+              </select>
+            </form>
+          </div>
         </div>
-        </div>
-        <hr>
-        <form name="languageForm">
-          <label for="langSelect"> select language: </label>
-          <select class="langselection" name="langSelect" id="langSelect" ng-model="language.selected" ng-options="option.name for option in language.availableOptions track by option.short" >
-          </select>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="keywordlist">
-    <div class="col-md-3">
-      <div class="well">
-        <h2>
-          keyword list
-        </h2>
-        <p>
-          linked keywords from GLUES database
-        </p>
-        <hr>
-        <form name="keywordForm">
-          <label for="keywordSelect"> select keyword: </label>
-          <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect" ng-change ="addHighlight()">
-            <option ng-repeat="option in links.availableOptions" value="{{option.ID}}">{{option.Name}}</option>
-          </select>
-        </form>
-        <hr>
-        <div class="keywordselection">
-
-          <a class="btn btn-info btn-lg" ng-click="goToAgrovoc()">
-            <span class="glyphicon glyphicon-info-sign" ></span> Go to AgroVoc entry
-          </a>
-        </p>
-
-      </div>
-      <hr>
-      <div>
-        <form novalidate>
-          Dataset URI:<br>
-          <input type="text" ng-model="newItem.uri"><br>
-          Dataset Title:<br>
-          <input type="text" ng-model="newItem.title">
-          Dataset subjects:<br>
-          <input type="text" ng-model="newItem.subjects">
-          <br><br>
-          <button ng-click="addItem()">Add Item</button>
-        </form>
-        <p>Uri = {{uri}}</p>
-        <p>title = {{title}}</p>
-        <p>subjects = {{subjects}}</p>
-      </div>
       </div>
 
-    </div>
-  </div>
-  <div class="publist">
-    <div class="col-md-4">
-      <div class="well">
-        <div class="linklist">
-          <h2>
-            linked datasets
-          </h2>
+      <!-- Pulldown for matched keywords for subjects excerpt -->
+      <div class="keywordlist">
+        <div class="col-md-3">
+          <div class="well">
+            <h2>
+              keyword list
+            </h2>
+            <p>
+              linked keywords from GLUES database
+            </p>
+            <hr>
+            <form name="keywordForm">
+              <label for="keywordSelect"> select keyword: </label>
+              <select class="keywordselection" name="keywordSelect" id="repeatSelect" ng-model="links.repeatSelect" ng-change ="addHighlight()">
+                <option ng-repeat="option in links.availableOptions" value="{{option.ID}}">{{option.Name}}</option>
+              </select>
+            </form>
+            <hr>
+            <div class="keywordselection">
+
+              <a class="btn btn-info btn-lg" ng-click="goToAgrovoc()">
+                <span class="glyphicon glyphicon-info-sign" ></span> Go to AgroVoc entry
+              </a>
+            </p>
+
+          </div>
           <hr>
-          <div class="linklistitems">
-            <ul class = "list-unstyled">
+          <!-- Form for adding new GLUES database links to selected keyword -->
+          <div>
+            <form novalidate>
+              Dataset URI:<br>
+              <input type="text" ng-model="newItem.uri"><br>
+              Dataset Title:<br>
+              <input type="text" ng-model="newItem.title">
+              Dataset subjects:<br>
+              <input type="text" ng-model="newItem.subjects">
+              <br><br>
+              <button ng-click="addItem()">Add Item</button>
+            </form>
+            <p>Uri = {{uri}}</p>
+            <p>title = {{title}}</p>
+            <p>subjects = {{subjects}}</p>
+          </div>
+        </div>
 
-              <li class ="linkitems" ng-repeat = "item in links.availableOptions | filter: filterExpression">
-                {{item.Name}}
-                <ul class="list-unstyled">
-                  <li class="linkTitle" ng-repeat="opt in item.Links |filter :{title: '!!'}">
+      </div>
+    </div>
+
+    <!-- List auf linked GLUES Datasets  -->
+    <div class="publist">
+      <div class="col-md-4">
+        <div class="well">
+          <div class="linklist">
+            <h2>
+              linked datasets
+            </h2>
+            <hr>
+            <div class="linklistitems">
+              <ul class = "list-unstyled">
+
+                <li class ="linkitems" ng-repeat = "item in links.availableOptions | filter: filterExpression">
+                  {{item.Name}}
+                  <ul class="list-unstyled">
+                    <li class="linkTitle" ng-repeat="opt in item.Links |filter :{title: '!!'}">
                       <a ng-if="opt.title != null" href="{{opt.ID}}">{{opt.title}}</a>
                       <span>
-                      <ul class="list-inline">
-                        <h6>Subjects: </h6>
-                        <li ng-repeat="subs in opt.subjects  ">
-                          <p>{{subs+','}}</p>
-                        </li>
-                      </ul>
-                    </span>
-                    <hr>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <p>Click export to download GLUES Linkset</p>
-            <a id="export" class="btn btn-info btn-lg" download="" ng-click="exportHierarchy()">Export</a>
+                        <ul class="list-inline">
+                          <h6>Subjects: </h6>
+                          <li ng-repeat="subs in opt.subjects  ">
+                            <p>{{subs+','}}</p>
+                          </li>
+                        </ul>
+                      </span>
+                      <hr>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <!-- Button to export the underlying GLUES - Agrovoc Datasets -->
+              <p>Click export to download GLUES Linkset</p>
+              <a id="export" class="btn btn-info btn-lg" download="" ng-click="exportHierarchy()">Export</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 </div>
 

@@ -12,20 +12,48 @@ padding-top: 96px;
   /*padding-top: 96px;*/
 }
 .navbar-inverse{
-  color: #666;
+  color: rgb(249, 178, 0);
+  background-color: rgb(0, 124, 149);
+}
+.title{
+  text-shadow: 4px 4px 12px black;
 }
 .list-unstyled .frstitm a{
   padding-left: 10px;
   color: #115;
   font-size: 16px;
 }
-.list-unstyled .list-unstyled a{
-}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a{
 
+  color: rgb(249, 178, 0);
+}
+.headerIcon{
+  padding: 4px;
+  margin: 4px;
+  margin-right: 32px;
+  background-color: white;
+  box-shadow: 4px 4px 12px black;
+}
+.excerptsHeader{
+  margin-right: 20px;
+  padding-top: 12px;
+  text-align: center;
+}
 .list-unstyled .list-unstyled .scnditm a{
   color: #337;
   font-size: 14px;
 }
+
+.footer li{
+  margin-right: 32px;
+}
+
+.footer li a{
+  color: rgb(249, 178, 0);
+  margin-left: 12px;
+  text-decoration: underline;
+}
+
 .list-unstyled .list-unstyled .scnditm .glyphicon{
   padding-left: 30px;
   font-size: 14px;
@@ -44,7 +72,7 @@ padding-top: 96px;
   min-height: 16px;
 }
 body{
-  background-color: #444;
+  background-color: #DCEBF0;
 }
 .linklist .list-unstyled{
   padding-left: 10px;

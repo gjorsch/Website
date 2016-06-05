@@ -3,7 +3,11 @@
 <!--[if IE 7]>         <html lang="en" ng-app="LinkedDataBrowserApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="LinkedDataBrowserApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="LinkedDataBrowserApp" class="no-js"> <!--<![endif]-->
+
+<!-- Mainpage serves as hub for all Agrovoc excerpts which are partial views -->
+
 <head>
+   <link rel="shortcut icon" type="image/x-icon" href="img/GlUES.ico" />
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Linked Data Browser </title>
@@ -17,14 +21,18 @@
 
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
+<!-- Navbar to select the excerpts of AgroVoc -->
 <body>
+
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <h1>
+          <img class="headerIcon" src="img/landmanagement.jpg" alt="Icon" style="float:left; width:84px;height:64px;">
+        <h1 class="title">
           Linked Data Browser
         </h1>
         <ul class= "nav navbar-nav">
+          <li><p class="excerptsHeader">Excerpts from AgroVoc:</p> </li>
           <li><a href="#/subjects">subjects</a></li>
           <li><a href="#/activities">activities</a></li>
           <li><a href="#/entities">entities</a></li>
@@ -36,15 +44,15 @@
     </nav>
   </div>
 
-  <!--[if lt IE 7]>
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
+<!-- The footer displays App version and contact information  -->
   <div ng-view></div>
   <footer class="footer">
     <div class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="container">
-        Linked Data Browser: v<span app-version></span>
+        <ul class="nav navbar-nav ">
+          <li>Linked Data Browser: v<span app-version></span></li>
+          <li><span>Contact: <a href="http://nachhaltiges-landmanagement.de/de/wissenschaftliche-begleitung-glues/">GLUES Team</a></span></li>
+        </ul>
       </div>
     </div>
   </footer>
@@ -52,6 +60,7 @@
 
 
 <!-- Libs -->
+<!-- Necessary libaries to run the app -->
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -63,6 +72,7 @@
 <script src="js/helperfunctions.js"></script>
 
 <!-- Views -->
+<!-- Javascript files that provide the controller for each excerpts view -->
 <script src="subjects/subjects.js"></script>
 <script src="activities/activities.js"></script>
 <script src="entities/entities.js"></script>

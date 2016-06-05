@@ -1,7 +1,8 @@
 'use strict';
-
+//Controller for measure excerpt of Agrovoc - GlUES linking
 angular.module('LinkedDataBrowserApp.measure', ['ngRoute'])
 
+//configuration for angular route provider
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/measure', {
     templateUrl: 'measure/measure.html',
@@ -15,6 +16,7 @@ angular.module('LinkedDataBrowserApp.measure', ['ngRoute'])
     availableOptions: [{name:"deutsch",short: "de"},{name:"english", short :"en"}]
   };
 
+    // function to scroll to selected keyword (doesn't work)
     $scope.gotoHighlight = function() {
       $timeout(function(){
         $location.hash("highlight");
@@ -22,7 +24,7 @@ angular.module('LinkedDataBrowserApp.measure', ['ngRoute'])
         $anchorScroll();
     });
     };
-
+  //function to retrieve currently selected language
   $scope.getlang = function(){
     lang = $scope.language.selected.short;
     console.log("click");
@@ -45,6 +47,7 @@ angular.module('LinkedDataBrowserApp.measure', ['ngRoute'])
     console.log($scope.structData);
   });
 
+ //function to add highlight
   $scope.addHighlight = function(){
     console.log("highlight");
     highlightKeyword($scope.links.repeatSelect);
@@ -78,7 +81,7 @@ angular.module('LinkedDataBrowserApp.measure', ['ngRoute'])
   $scope.filterExpression = function(item) {
     return (item.ID === $scope.links.repeatSelect);
   }
-
+   //function to export GlUES Dataset for currently selected keyword
   $scope.exportHierarchy = function (){
     var stringdata = JSON.stringify($scope.links.availableOptions);
     createDownloadLink("#export",stringdata);

@@ -51,6 +51,7 @@ angular.module('LinkedDataBrowserApp.subjects', ['ngRoute'])
   $scope.addHighlight = function(){
     console.log("highlight");
     highlightKeyword($scope.links.repeatSelect);
+    scrolltokeyword($scope.links.repeatSelect);
   };
 
   $scope.goToAgrovoc = function(){
@@ -87,6 +88,18 @@ angular.module('LinkedDataBrowserApp.subjects', ['ngRoute'])
   $scope.exportHierarchy = function (){
     var stringdata = JSON.stringify($scope.links.availableOptions);
     createDownloadLink("#export",stringdata);
+  }
+  //check for buttons to hide
+  $scope.hideButtons = function (ID){
+    //console.log(ID);
+    var result = true;
+    if(checkToHide(ID,$scope.links.availableOptions)){
+      result = false;
+    } else{
+      result = true;
+    }
+    console.log(result);
+    return result;
   }
 
 }]);

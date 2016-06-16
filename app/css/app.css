@@ -6,11 +6,11 @@ padding-top: 96px;
 .subjectlist .subjectlistitems{
   overflow:hidden;
   overflow-y:scroll;
+  overflow-x: scroll; 
   max-height: 500px;
+
 }
-.keywordlist{
-  /*padding-top: 96px;*/
-}
+
 .navbar-inverse{
   color: rgb(249, 178, 0);
   background-color: rgb(0, 124, 149);
@@ -107,12 +107,12 @@ body{
     position:relative
 
 }
-.tree li::before, .tree li::after {
+/*.tree li::before, .tree li::after {
     content:'';
     left:-20px;
     position:absolute;
     right:auto
-}
+}*/
 .tree li::before {
     border-left:1px solid #999;
     bottom:50px;
@@ -135,4 +135,9 @@ body{
 }
 .selectedkeyword {
   color: blue;
+}
+
+.subjectlist .btn {
+  margin-left: 32px;
+  margin-bottom: 12px;
 }

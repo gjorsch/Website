@@ -54,3 +54,30 @@ var createDownloadLink = function(anchorSelector, str){
 		$(anchorSelector).attr("href", url);
 	};
 };
+
+//scroll to Keyword in hierarchy
+var scrolltokeyword = function (ID){
+  console.log(ID);
+  $('html, body, subjectlist').animate({
+       scrollTop: $(ID).offset().top
+   }, 2000);
+};
+//check weather to hide the "select keyword" button or not
+var checkToHide = function (ID, keywordarray){
+  $(document).ready(function() {
+    //console.log(keywordarray);
+    //console.log("ID: "+ID);
+    for (var i = 0; i < keywordarray.length; i++){
+      var result = true;
+      //console.log("keyword: "+keywordarray[i].ID);
+
+      if (ID == keywordarray[i].ID){
+        result = true;
+      } else {
+        result = false;
+      };
+    };
+    //sconsole.log(result);
+    return result;
+  });
+};

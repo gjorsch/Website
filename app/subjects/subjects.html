@@ -23,25 +23,25 @@
                     <ul class ="firstLevel">
                       <li ng-repeat="ditem in structData.narrower" >
                         <span><uib-accordion-group  ng-repeat ="name in ditem.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{ditem.id}}">
-                          <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                          <a class="btn btn-info btn-lg ng-hide" ng-click="selectKeywordFromHierachy($event)" ng-hide="{{hideButtons(ditem.id) == true}}">
                             <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
                           </a>
                           <ul class="secondLevel">
                             <li ng-repeat="narrowitm in ditem.narrower">
                               <span><uib-accordion-group ng-repeat ="name in narrowitm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowitm.id}}">
-                                <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                <a class="btn btn-info btn-lg ng-hide" ng-click="selectKeywordFromHierachy($event)" ng-hide="{{hideButtons(narrowitm.id)}}">
                                   <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
                                 </a>
                                 <ul class="thirdLevel">
                                   <li ng-repeat="narroweritm in narrowitm.narrower">
                                     <span><uib-accordion-group ng-repeat ="name in narroweritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narroweritm.id}}">
-                                      <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                      <a class="btn btn-info btn-lg ng-hide" ng-click="selectKeywordFromHierachy($event)" ng-hide="{{hideButtons(narroweritm.id)}}">
                                         <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
                                       </a>
                                       <ul class="fourthLevel">
                                         <li ng-repeat="narrowereritm in narroweritm.narrower">
                                           <span><uib-accordion-group ng-repeat ="name in narrowereritm.label | filter: {lang : language.selected.short}" heading="{{name.name}}" is-open="false" id="{{narrowereritm.id}}">
-                                            <a class="btn btn-info btn-lg" ng-click="selectKeywordFromHierachy($event)">
+                                            <a class="btn btn-info btn-lg ng-hide" ng-click="selectKeywordFromHierachy($event)" ng-hide="{{hideButtons(narrowereritm.id)}}">
                                               <span class="glyphicon glyphicon-info-sign" ></span> Select as keyword
                                             </a>
                                           </span>

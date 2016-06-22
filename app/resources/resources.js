@@ -5,7 +5,7 @@ angular.module('LinkedDataBrowserApp.resources', ['ngRoute'])
 //configuration for angular route provider
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/resources', {
-    templateUrl: 'resources/resources.html',
+    templateUrl: 'html/view.html',
     controller: 'resourcesCtrl'
   });
 }])
@@ -83,6 +83,18 @@ angular.module('LinkedDataBrowserApp.resources', ['ngRoute'])
   $scope.exportHierarchy = function (){
     var stringdata = JSON.stringify($scope.links.availableOptions);
     createDownloadLink("#export",stringdata);
+  }
+
+  //check for buttons to hide
+  $scope.hideButtons = function (ID){
+    var result = true;
+    if(checkToHide(ID,$scope.links.availableOptions)){
+      result = false;
+    } else{
+      result = true;
+    }
+    console.log(result);
+    return result;
   }
 
 }]);

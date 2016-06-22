@@ -5,7 +5,7 @@ angular.module('LinkedDataBrowserApp.entities', ['ngRoute'])
 //configuration for angular route provider
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/entities', {
-    templateUrl: 'entities/entities.html',
+    templateUrl: 'html/view.html',
     controller: 'entitiesCtrl'
   });
 }])
@@ -84,6 +84,18 @@ angular.module('LinkedDataBrowserApp.entities', ['ngRoute'])
   $scope.exportHierarchy = function (){
     var stringdata = JSON.stringify($scope.links.availableOptions);
     createDownloadLink("#export",stringdata);
+  }
+
+  //check for buttons to hide
+  $scope.hideButtons = function (ID){
+    var result = true;
+    if(checkToHide(ID,$scope.links.availableOptions)){
+      result = false;
+    } else{
+      result = true;
+    }
+    console.log(result);
+    return result;
   }
 
 }]);

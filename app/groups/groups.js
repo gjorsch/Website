@@ -5,7 +5,7 @@ angular.module('LinkedDataBrowserApp.groups', ['ngRoute'])
 //configuration for angular route provider
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/groups', {
-    templateUrl: 'groups/groups.html',
+    templateUrl: 'html/view.html',
     controller: 'groupsCtrl'
   });
 }])
@@ -86,6 +86,18 @@ angular.module('LinkedDataBrowserApp.groups', ['ngRoute'])
   $scope.exportHierarchy = function (){
     var stringdata = JSON.stringify($scope.links.availableOptions);
     createDownloadLink("#export",stringdata);
+  }
+
+  //check for buttons to hide
+  $scope.hideButtons = function (ID){
+    var result = true;
+    if(checkToHide(ID,$scope.links.availableOptions)){
+      result = false;
+    } else{
+      result = true;
+    }
+    console.log(result);
+    return result;
   }
 
 }]);

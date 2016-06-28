@@ -156,36 +156,35 @@
           </div>
           <hr>
 
-          <!-- Form for adding new GLUES database links to selected keyword -->
+          <!-- Form for adding new GLUES database links to selected keyword
+               URI and Title are required, novalidate to disable html5 validation-->
 
           <div>
-            <form novalidate>
+            <form name="newDataset" novalidate>
               Dataset URI:<br>
-              <input type="text" ng-model="newItem.uri"><br>
+              <input type="url" name="uri" ng-model="newItem.uri" ng-required ="true"><br>
+              <p ng-show="newDataset.uri.$invalid && newDataset.uri.$touched">URI is required</p>
               Dataset Title:<br>
-              <input type="text" ng-model="newItem.title">
+              <input type="text" name="title" ng-model="newItem.title" ng-required ="true"><br>
+              <p ng-show="newDataset.title.$invalid && newDataset.title.$touched">Title is required</p>
               Dataset subjects:<br>
-              <input type="text" ng-model="newItem.subjects">
+              <input type="text" name="subjects" ng-model="newItem.subjects">
               <br><br>
 
               <!-- Button to add new GlUESData to Linklist
               Does not validate the input yet
               -->
 
-              <button ng-click="addItem()">Add Item</button>
+              <button ng-disabled="newDataset.uri.$invalid || newDataset.title.$invalid" ng-click="addItem()">Add Item</button>
             </form>
-            <p>Uri = {{uri}}</p>
-            <p>title = {{title}}</p>
-            <p>subjects = {{subjects}}</p>
           </div>
         </div>
-
       </div>
     </div>
 
     <!-- List auf linked GLUES Datasets -->
     <!-- ng-repeat cyles through Datasets and the corresponding subjects -->
-    
+
     <div class="publist">
       <div class="col-md-4">
         <div class="well">

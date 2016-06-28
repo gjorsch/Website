@@ -22,6 +22,7 @@ angular.module('LinkedDataBrowserApp.subjects', ['ngRoute'])
         $anchorScroll();
     });
     };
+    
 
     //function to retrieve currently selected language
   $scope.getlang = function(){
@@ -87,7 +88,7 @@ angular.module('LinkedDataBrowserApp.subjects', ['ngRoute'])
 
   //filter for displaying Link Count for hierarchy
   //filter in html seems to work globly for all items
-  
+
   $scope.filterCount = function(ID){
     var match = false;
     //console.log(ID.id);
